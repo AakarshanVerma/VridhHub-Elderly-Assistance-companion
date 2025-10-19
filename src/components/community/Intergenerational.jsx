@@ -1,10 +1,10 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
 
 import intergenerational from '../../assets/intergerenationalmeetups.jpg';
-import intergerenationalskills from '../../assets/intergerenationalskills.jpg';
-import intergerenationalsupport from '../../assets/intergerenationalsupport.jpg';
+import intergenerationalSkills from '../../assets/intergerenationalskills.jpg';
+import intergenerationalSupport from '../../assets/intergerenationalsupport.jpg';
 import '../../styles/community/Intergenerational.css';
 
 const Intergenerational = () => {
@@ -49,48 +49,54 @@ const Intergenerational = () => {
             <h2 className="section-title">Our Features</h2>
           </div>
           <div className="program-grid">
+            {/* Intergenerational Meetups */}
             <div className="program-card">
               <img src={intergenerational} alt="Intergenerational Meetups" className="program-image" />
               <h3 className="program-title">Intergenerational Meetups</h3>
-              <p className="program-description">Organize and participate in meetups that bring the elderly and orphans together for shared activities and companionship.</p>
-              <button
-                className="join-button"
-                onClick={() => toggleInfo('info1')}
-              >
-                Learn More
+              <p className="program-description">
+                Organize and participate in meetups that bring the elderly and orphans together for shared activities and companionship.
+              </p>
+              <button className="join-button" onClick={() => toggleInfo('info1')}>
+                {info.info1 ? 'Show Less' : 'Learn More'}
               </button>
               <div className={`more-info ${info.info1 ? 'active' : ''}`}>
-                <p>These meetups are designed to foster mutual understanding and emotional support between the elderly and orphans, helping to build lasting relationships.</p>
+                <p>
+                  These meetups are designed to foster mutual understanding and emotional support between the elderly and orphans, helping to build lasting relationships.
+                </p>
               </div>
             </div>
 
+            {/* Skill Sharing */}
             <div className="program-card">
-              <img src={intergerenationalskills} alt="Skill Sharing" className="program-image" />
+              <img src={intergenerationalSkills} alt="Skill Sharing" className="program-image" />
               <h3 className="program-title">Skill Sharing</h3>
-              <p className="program-description">Elderly participants can share their life skills and experiences with the younger generation, offering guidance and wisdom.</p>
-              <button
-                className="join-button"
-                onClick={() => toggleInfo('info2')}
-              >
-                Learn More
+              <p className="program-description">
+                Elderly participants can share their life skills and experiences with the younger generation, offering guidance and wisdom.
+              </p>
+              <button className="join-button" onClick={() => toggleInfo('info2')}>
+                {info.info2 ? 'Show Less' : 'Learn More'}
               </button>
               <div className={`more-info ${info.info2 ? 'active' : ''}`}>
-                <p>From storytelling to craft making, these sessions provide a platform for the elderly to pass on their knowledge and for orphans to learn valuable life lessons.</p>
+                <p>
+                  From storytelling to craft making, these sessions provide a platform for the elderly to pass on their knowledge and for orphans to learn valuable life lessons.
+                </p>
               </div>
             </div>
 
+            {/* Community Support */}
             <div className="program-card">
-              <img src={intergerenationalsupport} alt="Community Support" className="program-image" />
+              <img src={intergenerationalSupport} alt="Community Support" className="program-image" />
               <h3 className="program-title">Community Support</h3>
-              <p className="program-description">Build a supportive community where both the elderly and orphans can find companionship, understanding, and care.</p>
-              <button
-                className="join-button"
-                onClick={() => toggleInfo('info3')}
-              >
-                Learn More
+              <p className="program-description">
+                Build a supportive community where both the elderly and orphans can find companionship, understanding, and care.
+              </p>
+              <button className="join-button" onClick={() => toggleInfo('info3')}>
+                {info.info3 ? 'Show Less' : 'Learn More'}
               </button>
               <div className={`more-info ${info.info3 ? 'active' : ''}`}>
-                <p>Our programs focus on creating a sense of belonging and emotional security through regular interaction and community-building activities.</p>
+                <p>
+                  Our programs focus on creating a sense of belonging and emotional security through regular interaction and community-building activities.
+                </p>
               </div>
             </div>
           </div>
