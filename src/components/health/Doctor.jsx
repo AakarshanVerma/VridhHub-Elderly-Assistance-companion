@@ -9,8 +9,8 @@ import {
   DialogContent,
   DialogTitle,
   TextField,
+  CircularProgress
 } from '@mui/material';
-import { Spinner } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { ArrowBack } from '@mui/icons-material';
@@ -26,16 +26,21 @@ const Doctor = () => {
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [alert, setAlert] = useState({ message: '', type: '' });
   const [openDialog, setOpenDialog] = useState(false);
+
   const navigate = useNavigate();
 
+  // Fetch doctors from Supabase
   useEffect(() => {
     const fetchDoctors = async () => {
       const { data, error } = await supabase
         .from('doctors')
         .select('*')
         .order('created_at', { ascending: false });
+
       if (error) {
         console.error('Error fetching doctors:', error);
+        setAlert({ message: 'Failed to fetch doctors.', type: 'error' });
+        setOpenSnackbar(true);
       } else {
         setDoctors(data);
       }
@@ -44,6 +49,7 @@ const Doctor = () => {
     fetchDoctors();
   }, []);
 
+  // Handle adding a doctor
   const handleAddDoctor = async () => {
     if (!name || !address || !specialization || !contact) {
       setAlert({ message: 'Please fill in all fields.', type: 'error' });
@@ -52,30 +58,37 @@ const Doctor = () => {
     }
 
     setLoading(true);
+
     const { data, error } = await supabase
       .from('doctors')
       .insert([{ name, address, specialization, contact }]);
+
+    setLoading(false);
 
     if (error) {
       console.error('Error adding doctor:', error);
       setAlert({ message: 'Failed to add doctor.', type: 'error' });
     } else {
-      setDoctors([...doctors, ...data]);
+      // Prepend new doctor to the list for immediate feedback
+      setDoctors([...(data || []), ...doctors]);
       setAlert({ message: 'Doctor added successfully.', type: 'success' });
-      setOpenDialog(false);
-      setName('');
-      setAddress('');
-      setSpecialization('');
-      setContact('');
+      handleCloseDialog(); // resets form
     }
 
-    setLoading(false);
     setOpenSnackbar(true);
   };
 
-  const handleCloseSnackbar = () => setOpenSnackbar(false);
+  // Reset form and close dialog
+  const handleCloseDialog = () => {
+    setName('');
+    setAddress('');
+    setSpecialization('');
+    setContact('');
+    setOpenDialog(false);
+  };
+
   const handleOpenDialog = () => setOpenDialog(true);
-  const handleCloseDialog = () => setOpenDialog(false);
+  const handleCloseSnackbar = () => setOpenSnackbar(false);
   const handleBack = () => navigate('/health');
 
   return (
@@ -85,17 +98,16 @@ const Doctor = () => {
       </Helmet>
 
       <main className="doctor-main">
-
-        {/* Updated Go Back Button - NOW POSITION HIGHER */}
-        <button onClick={handleBack} className="go-back-btn">
+        {/* Go Back Button */}
+        <button onClick={handleBack} className="go-back-btn" aria-label="Go Back">
           <ArrowBack className="back-arrow-icon" />
         </button>
 
         {/* Loading Spinner */}
         {loading && (
-          <Spinner animation="border" role="status" className="loading-spinner">
-            <span className="visually-hidden">Loading...</span>
-          </Spinner>
+          <div className="loading-overlay">
+            <CircularProgress />
+          </div>
         )}
 
         {/* Add Doctor Button */}
@@ -112,18 +124,22 @@ const Doctor = () => {
         {/* Doctors List */}
         <div className="doctor-container">
           <h2 className="section-title">Your Consulted Doctors</h2>
-          <div className="doctor-list">
-            {doctors.map((doctor) => (
-              <div key={doctor.id} className="doctor-card">
-                <div>
-                  <h5>{doctor.name}</h5>
-                  <p>Address: {doctor.address}</p>
-                  <p>Specialization: {doctor.specialization}</p>
-                  <p>Contact: {doctor.contact}</p>
+          {doctors.length === 0 ? (
+            <p className="no-doctors">No doctors added yet.</p>
+          ) : (
+            <div className="doctor-list">
+              {doctors.map((doctor) => (
+                <div key={doctor.id} className="doctor-card">
+                  <div className="doctor-card-content">
+                    <h5>{doctor.name}</h5>
+                    <p><strong>Address:</strong> {doctor.address}</p>
+                    <p><strong>Specialization:</strong> {doctor.specialization}</p>
+                    <p><strong>Contact:</strong> {doctor.contact}</p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Dialog for Adding Doctor */}
@@ -136,31 +152,33 @@ const Doctor = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 fullWidth
+                margin="dense"
               />
               <TextField
                 label="Address"
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
                 fullWidth
+                margin="dense"
               />
               <TextField
                 label="Specialization"
                 value={specialization}
                 onChange={(e) => setSpecialization(e.target.value)}
                 fullWidth
+                margin="dense"
               />
               <TextField
                 label="Contact Information"
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
                 fullWidth
+                margin="dense"
               />
             </div>
           </DialogContent>
           <DialogActions>
-            <Button onClick={handleCloseDialog} color="primary">
-              Cancel
-            </Button>
+            <Button onClick={handleCloseDialog} color="primary">Cancel</Button>
             <Button onClick={handleAddDoctor} color="primary" disabled={loading}>
               {loading ? 'Adding...' : 'Add'}
             </Button>
