@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import health from '../assets/health.png';
@@ -56,18 +56,17 @@ const Home = () => {
               onMouseEnter={() => setHoveredService(service.id)}
               onMouseLeave={() => setHoveredService(null)}
             >
-              <img 
-                src={service.image} 
-                alt={service.title} 
-                className="service-image"
-              />
+              <div className="card-image-container">
+                <img 
+                  src={service.image} 
+                  alt={service.title} 
+                  className="service-image"
+                />
+              </div>
               <h3 className="service-title">{service.title}</h3>
             </Link>
           ))}
         </section>
-
-       
-        
       </div>
     </>
   );
