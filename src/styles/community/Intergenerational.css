@@ -1,0 +1,224 @@
+.intergenerational-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: linear-gradient(135deg, #FDFBF7 0%, #F5F0E5 100%);
+    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+}
+
+.header {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.header h1 {
+    color: #2D3748;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.4;
+}
+
+.header p {
+    color: #4A5568;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.program-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem;
+}
+
+.program-card {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 2.5rem;
+    border: 2px solid #E2E8F0;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.program-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.program-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 2rem;
+    border: 4px solid #E2E8F0;
+}
+
+.program-title {
+    color: #2C5282;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.program-description {
+    color: #4A5568;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.join-button {
+    padding: 1.2rem 2.5rem;
+    background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.join-button:hover {
+    background: linear-gradient(135deg, #38A169 0%, #2F855A 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(56, 161, 105, 0.3);
+}
+
+.testimonials-section {
+    margin-top: 4rem;
+    padding: 3rem;
+    background: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.testimonial-card {
+    padding: 2rem;
+    background: #F7FAFC;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.testimonial-text {
+    color: #2D3748;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+.testimonial-author {
+    color: #4A5568;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    color: #2D3748;
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+    display: inline-block;
+    padding-bottom: 1rem;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
+    border-radius: 2px;
+}
+
+@media (max-width: 768px) {
+    .intergenerational-container {
+        padding: 1rem;
+    }
+
+    .header {
+        padding: 2rem;
+    }
+
+    .header h1 {
+        font-size: 2.2rem;
+    }
+
+    .header p {
+        font-size: 1.2rem;
+    }
+
+    .program-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .program-card {
+        padding: 2rem;
+    }
+
+    .join-button {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+/* Accessibility Features */
+@media (prefers-reduced-motion) {
+    .program-card {
+        transition: none;
+    }
+
+    .program-card:hover {
+        transform: none;
+    }
+
+    .join-button:hover {
+        transform: none;
+    }
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+    .program-title {
+        color: #1A365D;
+    }
+
+    .program-description {
+        color: #1A202C;
+    }
+
+    .join-button {
+        background: #2F855A;
+    }
+
+    .join-button:hover {
+        background: #22543D;
+    }
+}

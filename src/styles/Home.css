@@ -1,0 +1,241 @@
+/* Home Section */
+.home-container {
+    width: 100%;
+    padding: 4rem 2rem;
+    background-color: #f8f9fa;
+    background-image: url('../assets/more_translucent_elderly_care_scene.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+  }
+  
+  /* Hero Section */
+  .hero-section {
+    min-height: 75vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 20px;
+    margin-bottom: 4rem;
+    padding: 3rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    color: white;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  
+  .hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  
+  /* Grid Layout */
+  .content-section {
+    width: 90%;
+    max-width: 1400px;
+    margin: 0 auto 4rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Card Style */
+  .card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.05);
+    transition: all 0.4s ease;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 100%;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    transform: translateY(-100%);
+    transition: transform 0.4s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(31, 38, 135, 0.25), inset 0 0 100px rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .card:hover::before {
+    transform: translateY(0);
+  }
+  
+  /* Image */
+  .service-image {
+    width: 120px;
+    height: 120px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    background: rgba(250, 247, 240, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1), inset 0 0 20px rgba(255, 255, 255, 0.5);
+    transition: all 0.4s ease;
+    object-fit: contain;
+  }
+  
+  .card:hover .service-image {
+    transform: scale(1.05);
+    background: rgba(255, 248, 234, 0.95);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15), inset 0 0 30px rgba(255, 255, 255, 0.8);
+  }
+  
+  /* Service Title */
+  .service-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-top: 1rem;
+    background: linear-gradient(135deg, #333, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  /* Service-specific gradients */
+  [data-service="health"] .service-title {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  [data-service="finance"] .service-title {
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  [data-service="transport"] .service-title {
+    background: linear-gradient(135deg, #e11d48, #f43f5e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  [data-service="isolation"] .service-title {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  [data-service="community"] .service-title {
+    background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Buttons */
+  .card .button {
+    padding: 1.4rem 4rem;
+    font-size: 1.3rem;
+    font-weight: 700;
+    border: none;
+    border-radius: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 2rem;
+  }
+  
+  .card[data-service="health"] .button {
+    background: linear-gradient(135deg, #16a34a, #22c55e);
+  }
+  .card[data-service="finance"] .button {
+    background: linear-gradient(135deg, #0f766e, #14b8a6);
+  }
+  .card[data-service="transport"] .button {
+    background: linear-gradient(135deg, #e11d48, #f43f5e);
+  }
+  .card[data-service="isolation"] .button {
+    background: linear-gradient(135deg, #7c3aed, #8b5cf6);
+  }
+  .card[data-service="community"] .button {
+    background: linear-gradient(135deg, #0ea5e9, #38bdf8);
+  }
+  
+  .card .button:hover {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* Typography */
+  h1 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: inherit;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #64748b;
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Utilities */
+  .main-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 2rem 0;
+    color: #1e293b;
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #64748b;
+    margin-bottom: 3rem;
+  }
+  
+  .section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1e293b;
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* Animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .fade-in {
+    animation: fadeIn 1s ease-out forwards;
+  }
+  

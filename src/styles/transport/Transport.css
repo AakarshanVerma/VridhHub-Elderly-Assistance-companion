@@ -1,0 +1,157 @@
+/* Main Container */
+.transport-container {
+    padding: 2rem;
+    background: linear-gradient(to bottom right, #f0fdf4, #e3f2fd);
+    min-height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Header */
+  .transport-title {
+    color: #256d5a;
+    font-size: 2.8rem;
+    text-align: center;
+    margin: 2rem 0 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+  }
+  
+  .transport-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #81c784, transparent);
+  }
+  
+  /* Subtext */
+  .transport-subtext {
+    font-size: 1.2rem;
+    color: #444;
+    text-align: center;
+    max-width: 800px;
+    margin: 1rem auto 2rem;
+    line-height: 1.6;
+    font-weight: 500;
+    background: none;
+    box-shadow: none;
+    border: none;
+  }
+  
+  /* Grid Layout */
+  .transport-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0;
+  }
+  
+  /* Card */
+  .tile-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .tile-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+  }
+  
+  .tile-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .tile-card:hover .tile-img {
+    transform: scale(1.03);
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+  }
+  
+  .tile-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #256d5a;
+    margin-bottom: 0.8rem;
+  }
+  
+  .tile-description {
+    font-size: 1rem;
+    color: #4a4a4a;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  /* Access Button */
+  .transport-button {
+    background-color: #43a047; /* Matching soft green */
+    color: #ffffff;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+  }
+  
+  .transport-button:hover {
+    background-color: #388e3c;
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+  
+  /* Button Wrapper */
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .transport-title {
+      font-size: 2rem;
+    }
+  
+    .transport-subtext {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+  
+    .transport-grid {
+      grid-template-columns: 1fr;
+      padding: 1rem;
+    }
+  
+    .tile-card {
+      width: 100%;
+      max-width: 340px;
+    }
+  }
+  

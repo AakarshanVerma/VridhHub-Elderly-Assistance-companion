@@ -1,0 +1,144 @@
+/* Main Container */
+.health-container {
+  font-family: 'Poppins', sans-serif;
+  padding: 2rem;
+  background: linear-gradient(to bottom right, #f0fdf4, #e3f2fd); /* Soothing health colors */
+  min-height: 100vh;
+}
+
+/* Section Title */
+.health-title {
+  font-size: 2.8rem;
+  font-weight: 700;
+  color: #256d5a;
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.health-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: #81c784;
+  margin: 0.5rem auto 0;
+  border-radius: 5px;
+}
+
+/* Layout */
+.health-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/* Card */
+.health-card {
+  background-color: #ffffff;
+  border-radius: 24px;
+  overflow: hidden;
+  width: 300px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.health-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.12);
+}
+
+.health-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.health-card:hover img {
+  transform: scale(1.03);
+}
+
+/* Card Content */
+.health-card .card-body {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.health-card .card-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2e7d32;
+  margin-bottom: 0.8rem;
+  transition: color 0.3s ease;
+}
+
+.health-card:hover .card-title {
+  color: #66bb6a;
+}
+
+.health-card .card-text {
+  font-size: 1rem;
+  color: #4a4a4a;
+  line-height: 1.6;
+}
+
+/* Button */
+.health-button {
+  margin-top: 1rem;
+  background-color: #43a047;
+  color: #ffffff;
+  border: none;
+  padding: 0.6rem 1.4rem;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.health-button:hover {
+  background-color: #388e3c;
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+/* Banner (Optional intro section) */
+.health-banner {
+  background: linear-gradient(to right, #dcedc8, #e3f2fd);
+  padding: 2rem;
+  border-radius: 20px;
+  text-align: center;
+  margin-bottom: 3rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.health-banner h2 {
+  font-size: 2.2rem;
+  color: #2e7d32;
+  margin-bottom: 1rem;
+}
+
+.health-banner p {
+  font-size: 1.1rem;
+  color: #4e4e4e;
+  max-width: 800px;
+  margin: auto;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .health-title {
+    font-size: 2rem;
+  }
+
+  .health-card {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  .health-banner h2 {
+    font-size: 1.8rem;
+  }
+}

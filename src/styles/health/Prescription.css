@@ -1,0 +1,162 @@
+:root {
+  --health-primary: #7ec8e3;       /* Soft sky blue */
+  --health-accent: #a3d9c9;        /* Minty green */
+  --health-heading: #34626c;       /* Muted dark teal */
+  --health-bg: #f4fafe;            /* Very soft blue background */
+  --health-card: #ffffff;
+  --health-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  --health-radius: 18px;
+  --text-dark: #1f2a30;
+  --text-light: #566e7a;
+  --font-lg: 1.5rem;
+  --font-md: 1rem;
+  --font-sm: 0.9rem;
+}
+
+.prescription-container {
+  background: var(--health-bg);
+  min-height: 100vh;
+  padding: 2.5rem 1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.prescription-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--health-heading);
+  margin-bottom: 2rem;
+  text-align: center;
+  position: relative;
+}
+
+.prescription-title::after {
+  content: '';
+  width: 80px;
+  height: 4px;
+  background-color: var(--health-accent);
+  display: block;
+  margin: 0.5rem auto 0;
+  border-radius: 5px;
+}
+
+.prescription-form {
+  background: var(--health-card);
+  border-radius: var(--health-radius);
+  box-shadow: var(--health-shadow);
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.prescription-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-dark);
+}
+
+.prescription-form input,
+.prescription-form textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #d9e2ec;
+  border-radius: 12px;
+  font-size: var(--font-sm);
+  margin-bottom: 1.5rem;
+  background-color: #fefefe;
+  transition: border 0.3s ease;
+}
+
+.prescription-form input:focus,
+.prescription-form textarea:focus {
+  border-color: var(--health-primary);
+  outline: none;
+}
+
+.prescription-button-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.prescription-form button {
+  background-color: var(--health-primary);
+  color: white;
+  padding: 0.8rem 2rem;
+  border: none;
+  border-radius: 30px;
+  font-size: var(--font-md);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.prescription-form button:hover {
+  background-color: #60b3d1;
+}
+
+.prescription-note {
+  text-align: center;
+  color: var(--text-light);
+  font-size: var(--font-sm);
+  margin-top: 1rem;
+}
+
+/* Go Back Button Styling */
+.go-back-btn {
+  position: fixed; /* Changed to fixed to avoid conflict */
+  top: 85px; /* LOWERED button nicely */
+  left: 20px;
+  width: 45px;
+  height: 45px;
+  background-color: transparent;
+  border: 2px solid var(--health-primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 0;
+}
+
+.go-back-btn:hover {
+  background: var(--health-primary);
+  border-color: var(--health-accent);
+  transform: scale(1.1);
+}
+
+.back-arrow-icon {
+  font-size: 24px;
+  color: var(--health-primary);
+  transition: color 0.3s ease;
+}
+
+.go-back-btn:hover .back-arrow-icon {
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+  .prescription-form {
+    padding: 1.5rem;
+  }
+
+  .prescription-title {
+    font-size: 2rem;
+  }
+
+  /* Adjust Go Back Button for Small Screens */
+  .go-back-btn {
+    top: 15px;
+    left: 10px;
+  }
+}
