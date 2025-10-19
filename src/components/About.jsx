@@ -13,17 +13,18 @@ const About = () => {
   const handleAlertClose = () => setShowAlert(false);
 
   const styles = {
-  footer: {
-    textAlign: 'center',
-    padding: '20px',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    fontSize: '16px',
-    position: 'relative',
-    bottom: '0',
-    width: '100%',
-    boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.2)',
-  },
-}
+    footer: {
+      textAlign: 'center',
+      padding: '20px',
+      backgroundColor: 'rgba(255, 255, 255, 0.9)',
+      fontSize: '16px',
+      position: 'relative',
+      bottom: '0',
+      width: '100%',
+      boxShadow: '0 -4px 8px rgba(0, 0, 0, 0.2)',
+      marginTop: '2rem',
+    },
+  };
 
   return (
     <>
@@ -33,19 +34,36 @@ const About = () => {
       <Container fluid className="py-5 bg-light" style={{ fontSize: '1.2rem' }}>
         <Row className="justify-content-center">
           <Col md={8}>
-            <h1 className="text-center text-primary mb-4" style={{ fontSize: '2.5rem' }}>About Us</h1>
+            <h1 className="text-center text-primary mb-4" style={{ fontSize: '2.5rem' }}>
+              About Us
+            </h1>
+
             <div className="text-center mb-4">
               <p className="lead">
                 Welcome to our platform! We strive to make financial management simple and stress-free for everyone.
               </p>
-              <Alert variant="info" show={showAlert} onClose={handleAlertClose} dismissible>
+
+              <Alert
+                variant="info"
+                show={showAlert}
+                onClose={handleAlertClose}
+                dismissible
+                transition
+              >
                 We are committed to providing a secure and user-friendly experience. If you have any questions, feel free to reach out to our support team.
               </Alert>
-              <p className="text-primary mt-3" onClick={() => setShowAlert(true)} style={{ cursor: 'pointer' }}>
+
+              <p
+                className="text-primary mt-3"
+                onClick={() => setShowAlert(true)}
+                style={{ cursor: 'pointer', fontWeight: '500' }}
+              >
                 Learn More
               </p>
             </div>
+
             <hr />
+
             <h3
               className="text-primary mt-4"
               style={{ fontSize: '2rem', cursor: 'pointer' }}
@@ -60,7 +78,9 @@ const About = () => {
                 </p>
               </div>
             </Collapse>
+
             <hr />
+
             <h3
               className="text-primary mt-4"
               style={{ fontSize: '2rem', cursor: 'pointer' }}
@@ -75,7 +95,9 @@ const About = () => {
                 </p>
               </div>
             </Collapse>
+
             <hr />
+
             <h3
               className="text-primary mt-4"
               style={{ fontSize: '2rem', cursor: 'pointer' }}
@@ -92,16 +114,21 @@ const About = () => {
                   <li>Clear and accessible information, tailored for all users</li>
                 </ul>
                 <p>
-                  If you have any questions or need further assistance, please do not hesitate to <a href="/contact" className="text-primary">contact us</a>. We are here to help!
+                  If you have any questions or need further assistance, please do not hesitate to{' '}
+                  <a href="/contact" className="text-primary">
+                    contact us
+                  </a>
+                  . We are here to help!
                 </p>
               </div>
             </Collapse>
           </Col>
         </Row>
       </Container>
+
       <footer style={styles.footer}>
-            Designed By: Byte Busters
-        </footer>
+        Designed By: <strong>Byte Busters</strong>
+      </footer>
     </>
   );
 };
