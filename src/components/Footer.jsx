@@ -14,31 +14,41 @@ const Footer = () => {
   return (
     <footer className={styles.footer}>
       <Container>
-        <Row className="text-center text-md-left">
+        <Row className="text-center text-md-left py-4">
+          {/* Contact Info */}
           <Col md={4} className={styles.contact}>
-            <h5>Contact Us</h5>
-            <p><FaMapMarkerAlt /> Jammu, India</p>
-            <p><FaPhoneAlt /> +91 98765 43210</p>
-            <p><FaEnvelope /> vridhhub@example.com</p>
+            <h5 className="mb-3">Contact Us</h5>
+            <p><FaMapMarkerAlt className={styles.icon} /> Jammu, India</p>
+            <p><FaPhoneAlt className={styles.icon} /> +91 98765 43210</p>
+            <p><FaEnvelope className={styles.icon} /> vridhhub@example.com</p>
           </Col>
+
+          {/* About */}
           <Col md={4} className={styles.about}>
-            <h5>About VridhHub</h5>
-            <p>Supporting elderly care through tech-enabled solutions that ensure dignity, health, and community.</p>
+            <h5 className="mb-3">About VridhHub</h5>
+            <p>
+              Supporting elderly care through tech-enabled solutions that ensure dignity, health, and community.
+            </p>
           </Col>
+
+          {/* Social Links */}
           <Col md={4} className={styles.social}>
-            <h5>Follow Us</h5>
+            <h5 className="mb-3">Follow Us</h5>
             <div className={styles.icons}>
-              <a href="#"><FaFacebook /></a>
-              <a href="#"><FaTwitter /></a>
-              <a href="#"><FaInstagram /></a>
+              <a href="#" aria-label="Facebook"><FaFacebook /></a>
+              <a href="#" aria-label="Twitter"><FaTwitter /></a>
+              <a href="#" aria-label="Instagram"><FaInstagram /></a>
             </div>
           </Col>
         </Row>
+
         <hr />
-        <Row className="text-center">
+
+        {/* Copyright */}
+        <Row className="text-center py-3">
           <Col>
             <p className={styles.copy}>
-              &copy; {new Date().getFullYear()} VridhHub | Designed by Lomash Gupta
+              &copy; {new Date().getFullYear()} VridhHub | Designed by <strong>Byte Busters</strong>
             </p>
           </Col>
         </Row>
