@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { CircularProgress, Snackbar, Alert } from '@mui/material';
-import supabase from '../../supabase'; // Supabase client
+import supabase from '../../supabase';
 import { Helmet } from 'react-helmet';
 
 const Contact = () => {
@@ -12,91 +12,61 @@ const Contact = () => {
   const [snackbarMessage, setSnackbarMessage] = useState('');
   const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    if (name && email && message) {
-      setLoading(true);
-      const { data, error } = await supabase
-        .from('contact')
-        .insert([{ name, email, message }]);
-
-      setLoading(false);
-
-      if (error) {
-        setSnackbarMessage('Error: ' + error.message);
-        setSnackbarSeverity('error');
-      } else {
-        setSnackbarMessage('Your message has been sent successfully!');
-        setSnackbarSeverity('success');
-        setName('');
-        setEmail('');
-        setMessage('');
-      }
-      setSnackbarOpen(true);
-    } else {
+    if (!name || !email || !message) {
       setSnackbarMessage('Please fill out all fields.');
       setSnackbarSeverity('error');
       setSnackbarOpen(true);
+      return;
     }
-  };
 
-  const handleCloseSnackbar = () => setSnackbarOpen(false);
+    setLoading(true);
+
+    const { error } = await supabase.from('contact').insert([{ name, email, message }]);
+    setLoading(false);
+
+    if (error) {
+      setSnackbarMessage('Error: ' + error.message);
+      setSnackbarSeverity('error');
+    } else {
+      setSnackbarMessage('Your message has been sent successfully!');
+      setSnackbarSeverity('success');
+      setName('');
+      setEmail('');
+      setMessage('');
+    }
+    setSnackbarOpen(true);
+  };
 
   return (
     <>
       <Helmet>
         <title>Contact Us</title>
       </Helmet>
+
       <div style={containerStyle}>
-        <h2 style={{ marginBottom: '20px' }}>Contact Us</h2>
+        <h2>Contact Us</h2>
+
         <form onSubmit={handleSubmit} style={formStyle}>
-          <div style={formGroupStyle}>
-            <label htmlFor="name">Name</label>
-            <input
-              type="text"
-              id="name"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              style={inputStyle}
-              required
-            />
-          </div>
-          <div style={formGroupStyle}>
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              style={inputStyle}
-              required
-            />
-          </div>
-          <div style={formGroupStyle}>
-            <label htmlFor="message">Message</label>
-            <textarea
-              id="message"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              style={textareaStyle}
-              required
-            />
-          </div>
+          <FormField label="Name" value={name} onChange={setName} />
+          <FormField label="Email" type="email" value={email} onChange={setEmail} />
+          <FormField label="Message" textarea value={message} onChange={setMessage} />
+
           <button type="submit" style={buttonStyle} disabled={loading}>
             {loading ? <CircularProgress size={24} /> : 'Send'}
           </button>
         </form>
 
-        {/* Snackbar for feedback */}
         <Snackbar
           open={snackbarOpen}
           autoHideDuration={6000}
-          onClose={handleCloseSnackbar}
+          onClose={() => setSnackbarOpen(false)}
           anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
         >
           <Alert
-            onClose={handleCloseSnackbar}
+            onClose={() => setSnackbarOpen(false)}
             severity={snackbarSeverity}
             sx={{ width: '100%' }}
             variant="filled"
@@ -109,12 +79,34 @@ const Contact = () => {
   );
 };
 
+// Reusable form field component
+const FormField = ({ label, value, onChange, type = 'text', textarea }) => (
+  <div style={formGroupStyle}>
+    <label>{label}</label>
+    {textarea ? (
+      <textarea
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        style={textareaStyle}
+        required
+      />
+    ) : (
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        style={inputStyle}
+        required
+      />
+    )}
+  </div>
+);
+
 // Inline styles
 const containerStyle = {
-  width: '100%',
   maxWidth: '600px',
   margin: '40px auto',
-  padding: '20px',
+  padding: '30px',
   textAlign: 'center',
   backgroundColor: '#f9f9f9',
   borderRadius: '10px',
@@ -130,8 +122,8 @@ const formStyle = {
 const formGroupStyle = {
   display: 'flex',
   flexDirection: 'column',
-  alignItems: 'flex-start',
   gap: '5px',
+  textAlign: 'left',
 };
 
 const inputStyle = {
@@ -144,13 +136,8 @@ const inputStyle = {
 };
 
 const textareaStyle = {
-  padding: '10px',
-  width: '100%',
-  borderRadius: '5px',
-  border: '1px solid #ccc',
+  ...inputStyle,
   height: '120px',
-  outline: 'none',
-  transition: 'border 0.3s ease',
   resize: 'vertical',
 };
 
