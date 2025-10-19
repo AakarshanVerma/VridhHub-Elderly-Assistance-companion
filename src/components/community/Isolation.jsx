@@ -46,6 +46,9 @@ const Isolation = () => {
               key={index}
               className="tile-card"
               onClick={() => handleTileClick(tile.link)}
+              role="button"
+              tabIndex={0}
+              onKeyPress={(e) => e.key === 'Enter' && handleTileClick(tile.link)}
             >
               <img
                 src={tile.imgSrc}
@@ -56,7 +59,9 @@ const Isolation = () => {
                 <h3 className="tile-title">{tile.title}</h3>
                 <p className="tile-description">{tile.description}</p>
                 <div className="button-wrapper">
-                  <button className="isolation-button">Explore</button>
+                  <button className="isolation-button">
+                    Explore
+                  </button>
                 </div>
               </div>
             </div>
