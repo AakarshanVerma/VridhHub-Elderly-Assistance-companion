@@ -11,6 +11,8 @@ import {
 } from 'react-icons/fa';
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className={styles.footer}>
       <Container>
@@ -35,9 +37,9 @@ const Footer = () => {
           <Col md={4} className={styles.social}>
             <h5 className="mb-3">Follow Us</h5>
             <div className={styles.icons}>
-              <a href="#" aria-label="Facebook"><FaFacebook /></a>
-              <a href="#" aria-label="Twitter"><FaTwitter /></a>
-              <a href="#" aria-label="Instagram"><FaInstagram /></a>
+              <a href="#" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><FaFacebook /></a>
+              <a href="#" aria-label="Twitter" target="_blank" rel="noopener noreferrer"><FaTwitter /></a>
+              <a href="#" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
             </div>
           </Col>
         </Row>
@@ -48,7 +50,7 @@ const Footer = () => {
         <Row className="text-center py-3">
           <Col>
             <p className={styles.copy}>
-              &copy; {new Date().getFullYear()} VridhHub | Designed by <strong>Byte Busters</strong>
+              &copy; {currentYear} VridhHub | Designed by <strong>Byte Busters</strong>
             </p>
           </Col>
         </Row>
