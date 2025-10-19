@@ -17,29 +17,33 @@ const BalanceTracker = () => {
   }, []);
 
   const fetchBalance = async () => {
-    const { data, error } = await supabase
-      .from('Balance')
-      .select('balance')
-      .single();
+    try {
+      const { data, error } = await supabase
+        .from('Balance')
+        .select('balance')
+        .single();
 
-    if (error) {
-      setAlert({ show: true, message: `Error fetching balance: ${error.message}`, variant: 'danger' });
-    } else if (data) {
+      if (error) throw error;
       setCurrentBalance(parseFloat(data.balance) || 0);
+    } catch (error) {
+      setAlert({ show: true, message: `Error fetching balance: ${error.message}`, variant: 'danger' });
+      console.error(error);
     }
   };
 
   const fetchRecentTransactions = async () => {
-    const { data, error } = await supabase
-      .from('transactions')
-      .select('amount, transaction_type, timestamp')
-      .order('timestamp', { ascending: false })
-      .limit(5);
+    try {
+      const { data, error } = await supabase
+        .from('transactions')
+        .select('amount, transaction_type, timestamp')
+        .order('timestamp', { ascending: false })
+        .limit(5);
 
-    if (error) {
-      setAlert({ show: true, message: `Error fetching transactions: ${error.message}`, variant: 'danger' });
-    } else {
+      if (error) throw error;
       setRecentTransactions(data || []);
+    } catch (error) {
+      setAlert({ show: true, message: `Error fetching transactions: ${error.message}`, variant: 'danger' });
+      console.error(error);
     }
   };
 
@@ -48,7 +52,6 @@ const BalanceTracker = () => {
   };
 
   const handleAddMoney = () => {
-    // You can navigate to another page to add money or handle the logic here
     alert("Add money functionality will be implemented here.");
   };
 
@@ -58,9 +61,8 @@ const BalanceTracker = () => {
         <title>Finance - Balance Tracker</title>
       </Helmet>
 
-      {/* Go Back Button placed outside the container */}
       <button className="back-button" onClick={handleBack}>
-        <ArrowBack fontSize="inherit" />
+        <ArrowBack fontSize="inherit" /> Back
       </button>
 
       <div className="balance-container">
@@ -72,7 +74,7 @@ const BalanceTracker = () => {
         </div>
 
         <div className="current-balance">
-          Current Balance: ${currentBalance.toFixed(2)}
+          Current Balance: ₹{currentBalance.toFixed(2)}
         </div>
 
         <table className="transaction-table">
@@ -87,16 +89,16 @@ const BalanceTracker = () => {
             {recentTransactions.length > 0 ? (
               recentTransactions.map((transaction, index) => (
                 <tr key={index}>
-                  <td>
-                    {transaction.transaction_type.charAt(0).toUpperCase() + transaction.transaction_type.slice(1)}
-                  </td>
-                  <td>Rs. {parseFloat(transaction.amount).toFixed(2)}</td>
+                  <td>{transaction.transaction_type.charAt(0).toUpperCase() + transaction.transaction_type.slice(1)}</td>
+                  <td>₹{parseFloat(transaction.amount).toFixed(2)}</td>
                   <td>{new Date(transaction.timestamp).toLocaleString()}</td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="3" className="text-center">No recent transactions</td>
+                <td colSpan="3" className="text-center">
+                  No recent transactions
+                </td>
               </tr>
             )}
           </tbody>
