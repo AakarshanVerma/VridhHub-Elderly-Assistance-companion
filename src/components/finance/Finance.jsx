@@ -11,11 +11,7 @@ const tilesData = [
     link: '/finance/bill-manager',
     alt: 'Bill Manager',
     description: 'Manage and track all your bills in one place',
-    style: {
-      height: '200px',
-      objectFit: 'cover',
-      borderRadius: '8px 8px 0 0'
-    }
+    style: { height: '200px', objectFit: 'cover', borderRadius: '8px 8px 0 0' }
   },
   {
     title: 'Balance Tracker',
@@ -23,19 +19,17 @@ const tilesData = [
     link: '/finance/balance-tracker',
     alt: 'Balance Tracker',
     description: 'Keep track of your finances with real-time balance updates',
-    style: {
-      height: '200px',
-      objectFit: 'cover',
-      borderRadius: '8px 8px 0 0'
-    }
+    style: { height: '200px', objectFit: 'cover', borderRadius: '8px 8px 0 0' }
   }
 ];
 
 const Finance = () => {
   const navigate = useNavigate();
 
-  const handleTileClick = (link) => {
-    navigate(link);
+  const handleTileClick = (link) => navigate(link);
+
+  const handleKeyPress = (e, link) => {
+    if (e.key === 'Enter' || e.key === ' ') handleTileClick(link);
   };
 
   return (
@@ -45,18 +39,21 @@ const Finance = () => {
       </Helmet>
       
       <h1 className="finance-header">Financial Management Hub</h1>
-
       <p className="finance-subtext">
         Secure Finances, Peace of Mind. Easily track your balance, manage expenses, and stay in control with tools designed for comfort, clarity, and confidence.
       </p>
-      
+
       <div className="finance-grid">
         {tilesData.map((tile, index) => (
-          <div 
-            className="finance-card animate-in" 
+          <div
             key={index}
-            style={{ animationDelay: `${index * 0.2}s` }}
+            className="finance-card animate-in"
+            style={{ animationDelay: `${index * 0.2}s`, cursor: 'pointer' }}
             onClick={() => handleTileClick(tile.link)}
+            onKeyDown={(e) => handleKeyPress(e, tile.link)}
+            tabIndex={0}
+            role="button"
+            aria-label={`Access ${tile.title}`}
           >
             <div className="card-image-container">
               <img
@@ -74,14 +71,17 @@ const Finance = () => {
             <div className="card-content">
               <h2 className="card-header">{tile.title}</h2>
               <p className="card-description">{tile.description}</p>
-              <button className="finance-button">
+              <button
+                className="finance-button"
+                onClick={(e) => { e.stopPropagation(); handleTileClick(tile.link); }}
+              >
                 Access {tile.title}
               </button>
             </div>
           </div>
         ))}
       </div>
-      
+
       <Outlet />
     </div>
   );
