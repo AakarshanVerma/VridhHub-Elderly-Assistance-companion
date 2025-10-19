@@ -1,13 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/VRIDH.png'; 
+import logo from '../assets/VRIDH.png';
 
 const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
       <div className="container">
-        <Link className="navbar-brand" to="/">
-          <img src={logo} alt="Logo" width="40" height="40" className="d-inline-block align-top" />
+        <Link className="navbar-brand d-flex align-items-center" to="/">
+          <img
+            src={logo}
+            alt="VridhHub Logo"
+            width="40"
+            height="40"
+            className="d-inline-block align-top me-2"
+          />
           Elderly Assistance
         </Link>
         <button
@@ -35,7 +41,7 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/finance">
-                Financial
+                Finance
               </Link>
             </li>
             <li className="nav-item">
